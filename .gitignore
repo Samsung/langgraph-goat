@@ -1,0 +1,65 @@
+# Code Editor
+.vscode/
+.codex/
+.cursor/
+.gemini/
+.claude/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+.pydevproject
+
+# Python Environments
+.venv/
+.venv
+.env
+.env.local
+venv/
+ENV/
+env/
+
+# Python Build & Distribution
+*.pyc
+__pycache__/
+*.egg-info/
+.eggs/
+build/
+dist/
+*.egg
+*.whl
+.pip-cache/
+.uv-cache/
+
+# Testing & Coverage
+.pytest_cache/
+htmlcov/
+.tox/
+pytest.ini
+
+*output/
+.cache/
+
+# IDE & Workspace
+.workspace_rag/
+workspace.code-workspace
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# Logs & Temp
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# macOS
+.DS_Store
+.LSOverride
+
+# Windows
+Thumbs.db
+$RECYCLE.BIN/
+ehthumbs.db
