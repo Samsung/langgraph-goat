@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "langgraph-goat"
+version = "0.2.0"
+description = "Graph of Agentic Thoughts: Bridging Agentic Reasoning and Explainability through Graphs"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Moushumi Mahato", email = "moushumi.m@samsung.com" },
+    { name = "Javaid Nabi", email = "javaid.nabi@samsung.com" },
+]
+keywords = ["agents", "explainability", "counterfactual", "llm", "reasoning", "langgraph", "ai"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "networkx>=3.0",
+    "pydantic>=2.0",
+    "langchain>=0.2",
+    "langchain-core>=0.2",
+    "langgraph>=0.2",
+    "httpx>=0.25",
+]
+
+[project.optional-dependencies]
+graphviz = ["graphviz>=0.20"]
+litellm = ["litellm>=1.40"]
+all = ["graphviz>=0.20", "litellm>=1.40"]
+dev = ["pytest>=7.0", "pytest-cov", "pytest-asyncio", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/Samsung/langgraph-goat"
+Documentation = "https://github.com/Samsung/langgraph-goat/blob/main/README.md"
+"Bug Tracker" = "https://github.com/Samsung/langgraph-goat/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["langgraph_goat*"]
