@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "langgraph-goat"
-version = "0.2.0"
+version = "1.0.0"
 description = "Graph of Agentic Thoughts: Bridging Agentic Reasoning and Explainability through Graphs"
 readme = "README.md"
 requires-python = ">=3.10"
