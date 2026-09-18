@@ -209,7 +209,7 @@ Semantic search needs a pgvector embedding index; values must carry the indexed 
 <details>
 <summary><b>MarkdownStore — hand-editable memory</b></summary>
 
-[examples/markdown_store.py](examples/markdown_store.py) is a LangGraph-compatible store backed by a single markdown file — `##` headers are namespaces, `###` headers are keys. It re-reads the file on every call, so **you can edit `memory.md` mid-session and the agent sees it immediately**. Search is case-insensitive substring matching, not semantic.
+[examples/res/markdown_store.py](examples/res/markdown_store.py) is a LangGraph-compatible store backed by a single markdown file — `##` headers are namespaces, `###` headers are keys. It re-reads the file on every call, so **you can edit `memory.md` mid-session and the agent sees it immediately**. Search is case-insensitive substring matching, not semantic.
 
 ```python
 store = MarkdownStore("memory.md")
@@ -228,8 +228,7 @@ Every component is a Protocol. Match the shape and pass it in the config.
 | `PlanCritic` | `score(plans, context, trace_context=None) -> CriticVerdict` | [docs/custom_critic_guide.md](docs/custom_critic_guide.md) |
 | `ExplanationGenerator` | `generate(graph, trace_context=None) -> Explanation` | [docs/custom_explanation_generator_guide.md](docs/custom_explanation_generator_guide.md) |
 | `GraphStore` | `save(path, graph, trace_context=None) -> str` · `load(path, graph_id, ...)` · `list_recent(limit=20, ...)` | [docs/custom_graph_store_guide.md](docs/custom_graph_store_guide.md) |
-| `ExecutionRecorder` | `record_step(plan_id, record)` · `finalize_plan(plan_id, final_answer) -> ExecutionRecord` | |
-| `LLMClient` | `complete(messages, model=None, temperature=0.7, max_tokens=2000, trace_context=None, **kwargs) -> str` | |
+| `LLMClient` | `complete(messages, model=None, temperature=0.7, max_tokens=2000, trace_context=None, **kwargs) -> str` | [examples/customllm.py](examples/customllm.py) |
 
 ## Development
 
