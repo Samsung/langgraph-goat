@@ -1,8 +1,7 @@
 # Contributing to langgraph-goat
 
-Issues and pull requests are welcome. This guide covers how to set up the
-project, what the test and style expectations are, and the one architectural
-rule that matters most here: the public API boundary.
+Issues and pull requests are welcome. This guide covers how to set up the project, 
+and the one architectural rule that matters most here: the public API boundary.
 
 ## Before you start
 
@@ -11,21 +10,6 @@ rule that matters most here: the public API boundary.
   approach can be agreed on.
 - Many customizations do **not** require changing this library — see
   [Extension points](#extension-points) below.
-
-## Running tests
-
-The test suite is the gate for a pull request. It uses mock models — no
-network, no API keys, no live LLM:
-
-```bash
-pytest tests -q
-```
-
-Coverage for the module you touched:
-
-```bash
-pytest tests --cov=langgraph_goat --cov-report=term-missing
-```
 
 ## The public API boundary
 
@@ -57,16 +41,6 @@ Match the surrounding code. The conventions in use:
 currently ships no lint configuration, so treat its output as advisory and
 don't reformat unrelated code in your PR.
 
-## Tests for your change
-
-- Add tests to the file matching the module you changed
-  (`tests/test_middleware.py`, `tests/test_node_wrapper.py`, …).
-- Use mocks for models and stores. Unit tests must not make network calls.
-- Assert observable behavior — the returned state, the response, the recorded
-  call — rather than that a mock was merely touched.
-- `pytest.mark.parametrize` for input variations instead of near-duplicate tests.
-- Tests run in a temp working directory, so nothing should write into the repo.
-
 ## Documentation
 
 Update the docs alongside the code when you change public behavior:
@@ -80,8 +54,7 @@ Update the docs alongside the code when you change public behavior:
 
 1. Branch from `main`.
 2. Keep the change focused; unrelated cleanups belong in their own PR.
-3. Make sure `pytest tests -q` passes.
-4. In the description, explain what changed and why, link the issue it closes,
+3. In the description, explain what changed and why, link the issue it closes,
    and call out any change to the public API or to default behavior.
 
 ## License
