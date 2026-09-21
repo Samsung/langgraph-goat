@@ -121,7 +121,7 @@ _EDGE_STYLES: dict[EdgeKind, dict] = {
 def renderGraph(graph: GoATGraph, path: Path|str):
     """Render the GoATGraph using graphviz and display it."""
     if graphviz is None:
-        print("\n❌ Graphviz not installed. Install with: pip install graphviz")
+        print("\n[ERROR] Graphviz not installed. Install with: pip install graphviz")
         return
 
     # Ensure Graphviz is in PATH (deferred from import time)
@@ -131,7 +131,7 @@ def renderGraph(graph: GoATGraph, path: Path|str):
     try:
         output_dir.mkdir(parents=True, exist_ok=True)
     except (PermissionError, OSError) as e:
-        print(f"\n❌ Cannot create output directory '{path}': {e}")
+        print(f"\n[ERROR] Cannot create output directory '{path}': {e}")
         return
 
     try:
@@ -198,9 +198,9 @@ def renderGraph(graph: GoATGraph, path: Path|str):
 
         # 4. Render and display
         dot.render(directory=str(output_dir), view=True, cleanup=True, format='svg')
-        print(f"\n✅ Graph rendered successfully to: {output_dir}")
+        print(f"\nGraph rendered successfully to: {output_dir}")
     except graphviz.backend.ExecutableNotFound as e:
-        print(f"\n❌ Graphviz not found: {e}")
+        print(f"\n[ERROR] Graphviz not found: {e}")
         print(f"   Please install Graphviz:")
         if sys.platform == 'win32':
             print(f"   - Download from: https://graphviz.org/download/")
@@ -209,7 +209,7 @@ def renderGraph(graph: GoATGraph, path: Path|str):
             print(f"   - Linux: sudo apt-get install graphviz")
             print(f"   - macOS: brew install graphviz")
     except Exception as e:
-        print(f"\n⚠️  Graph rendering failed: {e}")
+        print(f"\n[WARN] Graph rendering failed: {e}")
 
 def renderTrace(trace: str, id: str, path: str) -> bool:
     """Render PlantUML sequence diagram to SVG.
@@ -223,7 +223,7 @@ def renderTrace(trace: str, id: str, path: str) -> bool:
     try:
         output_dir.mkdir(parents=True, exist_ok=True)
     except (PermissionError, OSError) as e:
-        print(f"\n❌ Cannot create output directory '{path}': {e}")
+        print(f"\n[ERROR] Cannot create output directory '{path}': {e}")
         return False
 
     try:
@@ -236,13 +236,13 @@ def renderTrace(trace: str, id: str, path: str) -> bool:
                 svg_path.write_bytes(svg_data)
             else:
                 svg_path.write_text(str(svg_data), encoding="utf-8")
-            print(f"\n✅ PlantUML sequence diagram (SVG) saved to: {svg_path}")
+            print(f"\nPlantUML sequence diagram (SVG) saved to: {svg_path}")
             return True
         except (PermissionError, OSError, UnicodeEncodeError) as e:
-            print(f"\n❌ Cannot write to '{svg_path}': {e}")
+            print(f"\n[ERROR] Cannot write to '{svg_path}': {e}")
             return False
     except Exception as e:
-        print(f"\n⚠️  PlantUML SVG rendering failed: {e}")
+        print(f"\n[WARN] PlantUML SVG rendering failed: {e}")
         return False
 
 
@@ -267,7 +267,7 @@ def renderTraceFromCollector(collector, graph_id: str, path: str, title: Optiona
         >>> renderTraceFromCollector(collector, graph_id="g-001", path="./output")
     """
     if collector is None:
-        print("\n⚠️  renderTraceFromCollector: collector is None")
+        print("\n[WARN] renderTraceFromCollector: collector is None")
         return
     
     # Generate PlantUML source from collector
@@ -820,15 +820,15 @@ def renderTele(tele: str | dict[str, Any], id: str, path: str):
         try:
             tele_data = json.loads(tele)
         except json.JSONDecodeError:
-            print(f"\n⚠️  renderTele: could not parse telemetry input as JSON or file path")
+            print(f"\n[WARN] renderTele: could not parse telemetry input as JSON or file path")
             return
     else:
-        print(f"\n⚠️  renderTele: unsupported telemetry input type: {type(tele)}")
+        print(f"\n[WARN] renderTele: unsupported telemetry input type: {type(tele)}")
         return
 
     telemetry_list: list[dict[str, Any]] = tele_data.get("telemetry", [])
     if not telemetry_list:
-        print(f"\n⚠️  renderTele: telemetry data is empty")
+        print(f"\n[WARN] renderTele: telemetry data is empty")
         return
 
     # ── Build HTML sections ─────────────────────────────────────────────────
@@ -1163,6 +1163,6 @@ def renderTele(tele: str | dict[str, Any], id: str, path: str):
     html_path = output_dir / f"tele_{id}.html"
     try:
         html_path.write_text(html, encoding="utf-8")
-        print(f"\n✅ Telemetry HTML report saved to: {html_path}")
+        print(f"\nTelemetry HTML report saved to: {html_path}")
     except (PermissionError, OSError, UnicodeEncodeError) as e:
-        print(f"\n❌ Cannot write telemetry report to '{html_path}': {e}")
+        print(f"\n[ERROR] Cannot write telemetry report to '{html_path}': {e}")
