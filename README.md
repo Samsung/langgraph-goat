@@ -7,7 +7,7 @@
 </picture>
 
 **Online Explainability for Agentic Planners**\
-Your agent picked a plan. GoAT shows you what else it considered, why it chose this one, why others were rejected and where its knowledge came from, all captured at decision time rather than reconstructed afterward.
+Your agent picked a plan. GoAT shows you what else it considered, why they were rejected and where its knowledge came from, all captured at decision time rather than reconstructed afterward.
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
