@@ -23,7 +23,7 @@ Your agent picked a plan. GoAT shows you what else it considered, why they were 
 
 An ordinary agent emits *one* plan and executes it. Nothing records what else it could have done, or why it didn't. Failures are un-debuggable and decisions are un-auditable.
 
-GoAT wraps the planning step. For a request it judges *complex*, it generates **multiple plans**, scores them with an **LLM-as-judge critic**, executes only the winner, and emits a **directed graph** whose *factual plan* is the winning plan and whose *counterfactual plan(s)* are the rejected alternatives — each carrying the critic's rejection reason on a counterfactual edge. It then renders that graph as two natural-language explanations, one for developers and one for end users.
+GoAT wraps the planning step. For a request it judges *complex*, it generates **multiple plans**, scores them with an **LLM-as-judge critic**, executes only the winner, and emits a **directed graph** whose *factual plan* is the winning plan and whose *counterfactual plan(s)* are the rejected alternatives, each carrying the critic's rejection reason on a counterfactual edge. The plans, scores, and reasons are captured while the decision is being made, not reconstructed afterward. GoAT uses the graph to produce two kinds of explanation. Developers get a detailed account of the planning decision, including plan steps, relevant memory, causal links, and rejected options, to help interpret and debug it. Users get a concise explanation of what the agent did and why, with a relevant alternative which helps to explain the choice better.
 
 <div align="center">
 
