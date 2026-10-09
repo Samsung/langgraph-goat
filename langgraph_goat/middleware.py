@@ -845,7 +845,16 @@ class GoatMiddleware(AgentMiddleware[GoatAgentState, Any]):
                 # Step 2: Classify complexity ONCE (in the middleware, not through Director)
                 director = self._get_or_create_director(request.model)
                 classifier = director.classifier
-                if classifier is None:
+                if self.config.force_K is not None:
+                    # force_K bypasses the classifier
+                    K = max(1, min(self.config.force_K, director.max_K))
+                    complexity = PlanComplexity(
+                        needs_multiple_plans=K > 1,
+                        suggested_K=K,
+                        reason=f"Forced by config (force_K={self.config.force_K})",
+                        confidence=1.0,
+                    )
+                elif classifier is None:
                     # No classifier configured — use default_K
                     K = max(1, min(director.default_K, director.max_K))
                     complexity = PlanComplexity(
