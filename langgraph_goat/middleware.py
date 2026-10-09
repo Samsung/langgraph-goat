@@ -681,12 +681,8 @@ class GoatAgentState(TypedDict, total=False):
     All goat_* fields are marked with OmitFromInput so they don't
     need to be provided by the user, but ARE included in output.
     """
-    # GoAT outputs - omitted from input but included in output
-    goat_graph: NotRequired[Annotated[Any, GoatStateAttr]]
-    goat_winning_plan_id: NotRequired[Annotated[str, GoatStateAttr]]
-    goat_complexity: NotRequired[Annotated[Any, GoatStateAttr]]
-    goat_explanation: NotRequired[Annotated[Any, GoatStateAttr]]
-    goat_director_result: NotRequired[Annotated[Any, GoatStateAttr]]
+    # GoAT output - omitted from input but included in output
+    goat_output: NotRequired[Annotated[GoatOutput, GoatStateAttr]]
 
 
 # ── Goat Middleware Implementation ────────────────────────────────────────────
