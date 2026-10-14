@@ -1,22 +1,22 @@
 # Core dependencies for langgraph_goat package
 
 # LangGraph integration
-langgraph>=0.2
+langgraph>=1.0
 
-# LangChain for message types and tool handling
-langchain-core>=0.2
+# LangChain (agents/middleware)
+langchain>=1.0
 
-# JSON schema for type validation
-pydantic>=2.0
+# message types, tool handling
+langchain-core>=1.0
+
+# Typing backports (NotRequired on Python 3.10)
+typing_extensions>=4.0
 
 # Graph storage and manipulation
 networkx>=3.0
 
-# Optional: Graphviz for graph rendering (uncomment if needed)
+# Optional: Graphviz for GoAT graph rendering
 # graphviz>=0.20
-
-# Optional: LiteLLM for unified LLM interface (uncomment if needed)
-# litellm>=1.40
 
 # Optional: PlantUML for rendering execution flow diagram
 # plantuml
