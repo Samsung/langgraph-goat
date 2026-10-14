@@ -40,10 +40,17 @@ The plans, scores, and reasons are captured while the decision is being made, no
 
 ## Package
 
-One distribution, one import surface:
+Install the package into your Python environment:
+
+```bash
+pip install langgraph-goat
+```
+
+Using the package:
 
 ```python
 import langgraph_goat
+# or,
 from langgraph_goat import GoatMiddleware, GoatNode, GoatLogger
 ```
 
@@ -149,7 +156,7 @@ There is no config file and no GoAT runtime environment variable. Everything goe
 
 ### Static values
 
-Not configurable without supplying your own components:
+Not configurable without supplying your own custom components:
 
 <div align="center">
 
@@ -236,20 +243,6 @@ Every component is a Protocol. Match the shape and pass it in the config.
 
 ### Build
 
-#### Installation:
-
-**Development mode**
-```bash
-pip install -e .
-```
-
-**Regular install**:
-```bash
-pip install .
-```
-
-#### After Making Code Changes
-
 1. **Edit code** in `langgraph_goat/` (adapter) or `langgraph_goat/_core/` (engine)
 
 2. **If using editable install** (`pip install -e .`):
@@ -260,14 +253,6 @@ pip install .
    ```bash
    pip install -e . --force-reinstall --no-deps
    ```
-
-#### Clean Build
-
-Remove build artifacts if encountering issues:
-```bash
-Remove-Item -Recurse -Force dist, build, *.egg-info -ErrorAction SilentlyContinue
-pip install -e . --force-reinstall
-```
 
 ## Troubleshooting
 
