@@ -107,4 +107,4 @@ __all__ = [
     "reset_telemetry_collector",
 ]
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
