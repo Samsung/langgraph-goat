@@ -1,9 +1,9 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/goat-icon-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/goat-icon-light.svg">
-  <img alt="Graph of Agentic Thoughts" src="docs/goat-icon-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Samsung/langgraph-goat/main/docs/goat-icon-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Samsung/langgraph-goat/main/docs/goat-icon-light.svg">
+  <img alt="Graph of Agentic Thoughts" src="https://raw.githubusercontent.com/Samsung/langgraph-goat/main/docs/goat-icon-light.svg">
 </picture>
 
 **Online Explainability for Agentic Planners**\
@@ -67,7 +67,7 @@ GoAT offers two integration surfaces:
 | **Setup** | drop-in, one line | wrap your planner node |
 | **Control** | limited | full |
 | **Best for** | standard LangChain agents | custom graph architectures |
-| **Example** | [examples/agent_high_level.py](examples/agent_high_level.py) | [examples/agent_low_level.py](examples/agent_low_level.py) |
+| **Example** | [examples/agent_high_level.py](https://github.com/Samsung/langgraph-goat/blob/main/examples/agent_high_level.py) | [examples/agent_low_level.py](https://github.com/Samsung/langgraph-goat/blob/main/examples/agent_low_level.py) |
 
 </div>
 
@@ -76,9 +76,9 @@ GoAT offers two integration surfaces:
 ## How it works
 <div align="center">
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="docs/flow-diagram-light.png">
-  <source media="(prefers-color-scheme: dark)" srcset="docs/flow-diagram-dark.png">
-  <img alt="Graph of Agentic Thoughts" src="docs/flow-diagram-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Samsung/langgraph-goat/main/docs/flow-diagram-light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Samsung/langgraph-goat/main/docs/flow-diagram-dark.png">
+  <img alt="Graph of Agentic Thoughts" src="https://raw.githubusercontent.com/Samsung/langgraph-goat/main/docs/flow-diagram-dark.png">
 </picture>
 </div>
 <details>
@@ -211,14 +211,14 @@ async with AsyncConnectionPool(conninfo=DSN, max_size=20,
                          store=store, checkpointer=checkpointer)
 ```
 
-Semantic search needs a pgvector embedding index; values must carry the indexed field (`"text"` by convention) for `asearch()` to match. Without pgvector, retrieval degrades to exact key lookups. Working reference: [examples/agent_high_level_postgres.py](examples/agent_high_level_postgres.py).
+Semantic search needs a pgvector embedding index; values must carry the indexed field (`"text"` by convention) for `asearch()` to match. Without pgvector, retrieval degrades to exact key lookups. Working reference: [examples/agent_high_level_postgres.py](https://github.com/Samsung/langgraph-goat/blob/main/examples/agent_high_level_postgres.py).
 
 </details>
 
 <details>
 <summary><b>MarkdownStore — hand-editable memory</b></summary>
 
-[examples/res/markdown_store.py](examples/res/markdown_store.py) is a LangGraph-compatible store backed by a single markdown file — `##` headers are namespaces, `###` headers are keys. It re-reads the file on every call, so **you can edit `memory.md` mid-session and the agent sees it immediately**. Search is case-insensitive substring matching, not semantic.
+[examples/res/markdown_store.py](https://github.com/Samsung/langgraph-goat/blob/main/examples/res/markdown_store.py) is a LangGraph-compatible store backed by a single markdown file — `##` headers are namespaces, `###` headers are keys. It re-reads the file on every call, so **you can edit `memory.md` mid-session and the agent sees it immediately**. Search is case-insensitive substring matching, not semantic.
 
 ```python
 store = MarkdownStore("memory.md")
@@ -232,12 +232,12 @@ Every component is a Protocol. Match the shape and pass it in the config.
 
 | Protocol | Method | Reference |
 |----------|--------|-----------|
-| `PlanComplexityClassifier` | `classify(context, trace_context=None) -> PlanComplexity` | [docs/custom_classifier_guide.md](docs/custom_classifier_guide.md) |
+| `PlanComplexityClassifier` | `classify(context, trace_context=None) -> PlanComplexity` | [docs/custom_classifier_guide.md](https://github.com/Samsung/langgraph-goat/blob/main/docs/custom_classifier_guide.md) |
 | `PlanGenerator` | `generate_K(context, K, trace_context=None) -> list[Plan]` |  |
-| `PlanCritic` | `score(plans, context, trace_context=None) -> CriticVerdict` | [docs/custom_critic_guide.md](docs/custom_critic_guide.md) |
-| `ExplanationGenerator` | `generate(graph, trace_context=None) -> Explanation` | [docs/custom_explanation_generator_guide.md](docs/custom_explanation_generator_guide.md) |
-| `GraphStore` | `save(path, graph, trace_context=None) -> str` · `load(path, graph_id, ...)` · `list_recent(limit=20, ...)` | [docs/custom_graph_store_guide.md](docs/custom_graph_store_guide.md) |
-| `LLMClient` | `complete(messages, model=None, temperature=0.7, max_tokens=2000, trace_context=None, **kwargs) -> str` | [examples/customllm.py](examples/customllm.py) |
+| `PlanCritic` | `score(plans, context, trace_context=None) -> CriticVerdict` | [docs/custom_critic_guide.md](https://github.com/Samsung/langgraph-goat/blob/main/docs/custom_critic_guide.md) |
+| `ExplanationGenerator` | `generate(graph, trace_context=None) -> Explanation` | [docs/custom_explanation_generator_guide.md](https://github.com/Samsung/langgraph-goat/blob/main/docs/custom_explanation_generator_guide.md) |
+| `GraphStore` | `save(path, graph, trace_context=None) -> str` · `load(path, graph_id, ...)` · `list_recent(limit=20, ...)` | [docs/custom_graph_store_guide.md](https://github.com/Samsung/langgraph-goat/blob/main/docs/custom_graph_store_guide.md) |
+| `LLMClient` | `complete(messages, model=None, temperature=0.7, max_tokens=2000, trace_context=None, **kwargs) -> str` | [examples/customllm.py](https://github.com/Samsung/langgraph-goat/blob/main/examples/customllm.py) |
 
 ## Development
 
