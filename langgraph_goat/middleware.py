@@ -82,6 +82,38 @@ GoatStateAttr = OmitFromSchema(input=True, output=False)
 
 # ── LLM Client Adapter ────────────────────────────────────────────────────────
 
+# Attribute names chat models commonly use to store the model identifier
+_MODEL_NAME_ATTRS = ("model_name", "model", "model_id", "_model_name", "_model")
+
+
+def _resolve_model_name(model: Any, response_metadata: dict | None = None) -> str:
+    """Best-effort lookup of the model name for telemetry.
+
+    Checks the response metadata first (what the server actually used), then
+    common public/private attributes on the model, then ``_identifying_params``.
+    """
+    metadata = response_metadata or {}
+    for key in ("model_name", "model"):
+        value = metadata.get(key)
+        if isinstance(value, str) and value:
+            return value
+
+    for attr in _MODEL_NAME_ATTRS:
+        value = getattr(model, attr, None)
+        if isinstance(value, str) and value:
+            return value
+
+    try:
+        params = getattr(model, "_identifying_params", None) or {}
+        for key in ("model_name", "model", "model_id"):
+            value = params.get(key)
+            if isinstance(value, str) and value:
+                return value
+    except Exception:
+        pass
+    return ""
+
+
 class BaseModelAsLLMClient:
     """Adapts langchain_core BaseChatModel → the GoAT engine LLMClient protocol.
     
@@ -187,7 +219,7 @@ class BaseModelAsLLMClient:
                 model_response=model_response_dict,
                 messages=[{"role": m.__class__.__name__.replace("Message", "").lower(), "content": m.content} 
                           for m in lc_messages if hasattr(m, "content")],
-                model=getattr(self._model, "model_name", "") or getattr(self._model, "model", ""),
+                model=_resolve_model_name(self._model, usage_data),
                 temperature=temperature,
                 max_tokens=max_tokens,
                 latency_total=elapsed,

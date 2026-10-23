@@ -173,7 +173,7 @@ class CustomLLM(BaseChatModel):
             "prompt_tokens": prompt_eval_count,
             "completion_tokens": eval_count,
             "total_tokens": prompt_eval_count + eval_count,
-            "model": self._model_name,
+            "model": self._model_name or str(response_json.get("model", "")),
             "prompt_char_count": len(prompt),
         }
 
